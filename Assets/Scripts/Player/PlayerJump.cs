@@ -1,55 +1,31 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
-[RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerWalk))]
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _jumpCount;
-    [SerializeField] private float _gravityScale;
-    [SerializeField] private float _mass;
-    [SerializeField] private bool isGrounded;
-    [SerializeField] private float rayDistance;
-    private Vector3 _verticalDirection;
-    private CharacterController _characterController;
-    private PlayerWalk _walk;
+    [SerializeField] private float _maxJumpCount;
+
+    private Rigidbody _rigidBody;
+    private float _jumpCount;
 
     private void Start()
     {
-        _walk = GetComponent<PlayerWalk>();
-        _characterController = GetComponent<CharacterController>();
+        _rigidBody = GetComponent<Rigidbody>();
+        _jumpCount = _maxJumpCount;
     }
 
     private void Update()
     {
-        CheckGround();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _jumpCount > 0)
         {
-            _verticalDirection = _walk.GetDirection();
-            _verticalDirection.y = _jumpForce;
-            _characterController.Move(_verticalDirection * Time.deltaTime);
+            _rigidBody.AddForce(_jumpForce * Vector3.up, ForceMode.Impulse);
+            _jumpCount--;
         }
-        UseGravity();
-    }
-    private void CheckGround()
-    {
-        if (Physics.Raycast(this.transform.position, -Vector3.up, rayDistance))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
-    private void UseGravity()
-    {
-        if (isGrounded == false)
-        {
-            _verticalDirection.y = _gravityScale * _mass;
-            _characterController.Move(_verticalDirection * Time.deltaTime);
 
+        if (_rigidBody.velocity.y == 0 && _jumpCount == 0)
+        {
+            _jumpCount = _maxJumpCount;
         }
     }
 }
