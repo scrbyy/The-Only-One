@@ -36,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float hInput = Input.GetAxis("Horizontal") * _accurancy;
         float vInput = Input.GetAxis("Vertical") * _accurancy;
-        _moveDirection = new Vector3(hInput, _moveDirection.y, vInput);
+        _moveDirection = new Vector3(hInput, Physics.gravity.y, vInput);
+        _moveDirection = transform.TransformDirection(_moveDirection);
 
         if(_rigidBody.velocity.x < _maxSpeed && _rigidBody.velocity.z < _maxSpeed)
         {
