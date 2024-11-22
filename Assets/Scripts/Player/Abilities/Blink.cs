@@ -21,7 +21,7 @@ public class Blink : ActiveAbility
             }
             else
             {
-                // ¡¿√ —” ¿ _blinkSphere.position = transform.TransformPoint(_cameraOrigin.forward * _distance);
+                _blinkSphere.position = _cameraOrigin.position + _cameraOrigin.forward * _distance;
                 Debug.DrawLine(transform.TransformPoint(_cameraOrigin.forward), transform.TransformPoint(_cameraOrigin.forward * _distance));
                 CheckUnderFloor();
             }

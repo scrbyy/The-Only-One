@@ -218,10 +218,10 @@ GameObject:
   - component: {fileID: 381119200}
   - component: {fileID: 381119203}
   - component: {fileID: 381119205}
-  - component: {fileID: 381119208}
   - component: {fileID: 381119206}
   - component: {fileID: 381119207}
   - component: {fileID: 381119209}
+  - component: {fileID: 381119210}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -374,7 +374,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &381119208
+--- !u!114 &381119209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381119198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0542f44d8b7120842b90d4e2b5de1643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _abilities:
+  - {fileID: 381119210}
+  _selectedAbilityIndex: 0
+--- !u!114 &381119210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,21 +406,6 @@ MonoBehaviour:
   _blinkSphere: {fileID: 346720591}
   _distance: 10
   _cameraOrigin: {fileID: 963194228}
---- !u!114 &381119209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381119198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0542f44d8b7120842b90d4e2b5de1643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _abilities:
-  - {fileID: 381119208}
-  _selectedAbilityIndex: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

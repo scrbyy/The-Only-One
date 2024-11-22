@@ -15,7 +15,7 @@ public class CameraLook : MonoBehaviour
     }
     private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * _sensetivity * _sensetivityMultiplier;
+        float mouseX = Input.GetAxis("Mouse X") * _sensetivity;
         float mouseY = Input.GetAxis("Mouse Y") * _sensetivity;
         
         xRotation -= mouseY;
