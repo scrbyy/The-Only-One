@@ -4,10 +4,11 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _maxJumpCount;
+    [SerializeField] private int _maxJumpCount;
 
     private Rigidbody _rigidBody;
-    private float _jumpCount;
+    private int _jumpCount;
+    private float _maxFallVelocity;
 
     private void Start()
     {
@@ -19,13 +20,26 @@ public class PlayerJump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && _jumpCount > 0)
         {
-            _rigidBody.AddForce(_jumpForce * Vector3.up, ForceMode.Impulse);
+            _rigidBody.AddForce(_jumpForce * Vector3.up, ForceMode.VelocityChange);
             _jumpCount--;
         }
-
+        TryUpdateFallDamage();
         if (_rigidBody.velocity.y == 0 && _jumpCount == 0)
         {
             _jumpCount = _maxJumpCount;
+            TryGetFallDamage();
+        }
+       
+    }
+    private void TryGetFallDamage()
+    {
+        _maxFallVelocity = 0f;
+    }
+    private void TryUpdateFallDamage()
+    {
+        if (_maxFallVelocity < _rigidBody.velocity.y)
+        {
+            _maxFallVelocity = _rigidBody.velocity.y;
         }
     }
 }
