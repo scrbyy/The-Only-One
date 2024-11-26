@@ -6,6 +6,6 @@
     }
     private void OnDisable()
     {
-        Player.PlayerTookDamageEvent += ChangeValue;
+        Player.PlayerTookDamageEvent -= ChangeValue;
     }
 }

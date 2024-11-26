@@ -18,14 +18,12 @@ public class Blink : ActiveAbility
             if (Physics.Raycast(this.transform.position, _cameraOrigin.forward, out _hit, _distance))
             {
                 _target.position = _hit.point;
-                CheckUnderFloor();
             }
             else
             {
                 _target.position = _cameraOrigin.position + _cameraOrigin.forward * _distance;
-                Debug.DrawLine(transform.TransformPoint(_cameraOrigin.forward), transform.TransformPoint(_cameraOrigin.forward * _distance));
-                CheckUnderFloor();
             }
+            CheckUnderFloor();
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -35,9 +33,9 @@ public class Blink : ActiveAbility
     }
     private void CheckUnderFloor()
     {
-        if(_target.position.y < 0)
+        if(_target.position.y < 0f)
         {
-            _target.position = new Vector3(_target.position.x, 0, _target.position.z);
+            _target.position = new Vector3(_target.position.x, 0f, _target.position.z);
         }
     }
     private void TeleportPlayer()
@@ -46,7 +44,7 @@ public class Blink : ActiveAbility
         {
             this.transform.position = new Vector3(_target.position.x, _target.position.y + transform.localScale.y, _target.position.z);
         }
-
+        else
         {
             this.transform.position = _target.position;
         }

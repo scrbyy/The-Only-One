@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
         PlayerRunEvent -= SetRunSpeed;
         PlayerWalkEvent -= SetWalkSpeed;
     }
-   
     private void Start()
     {
         _rigidBody = GetComponent<Rigidbody>(); 
@@ -34,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float hInput = Input.GetAxis("Horizontal") * _speed;
         float vInput = Input.GetAxis("Vertical") * _speed;
+
         _moveDirection = new Vector3(hInput, _rigidBody.velocity.y, vInput);
         _moveDirection = transform.TransformDirection(_moveDirection);
 
@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidBody.velocity = _moveDirection;
-        Debug.Log(_rigidBody.velocity.y);
     }
     private void SetRunSpeed()
     {

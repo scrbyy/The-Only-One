@@ -9,15 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health;
     [SerializeField] private float _mana;
 
-    public void TakeDamage(float value)
+    public void TakeDamage(float damage)
     {
-        if(_health - value < 0)
+        if(damage < 0)
         {
-            PlayerDieEvent?.Invoke();   
+            throw new System.Exception("Damage < 0!");
         }
         else
         {
-            _health -= value;
+            _health -= damage;
             PlayerTookDamageEvent?.Invoke(_health);
         }
     }

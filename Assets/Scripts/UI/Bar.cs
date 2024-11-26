@@ -10,6 +10,6 @@ public class Bar : MonoBehaviour
     }
     public void ChangeValue(float value)
     {
-        _barImage.fillAmount = value;
+        _barImage.fillAmount = value / 100;
     }
 }
